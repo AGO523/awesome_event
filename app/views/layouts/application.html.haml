@@ -5,10 +5,10 @@
     %title AwesomeEvents
     = csrf_meta_tags
     = csp_meta_tag
-    = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag "application", media:"all", "dataturbolinkstrack": "reload"
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
   %body
-    %header.navbar.navbar-expand-sm.navbar-light.bg-light
+  %header.navbar.navbar-expand-sm.navbar-light.bg-light
     .container
       = link_to "AwesomeEvents", root_path, class: "navbar-brandmr-auto"
       %ul.navbar-nav

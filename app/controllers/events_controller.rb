@@ -4,7 +4,7 @@ before_action :authenticate, only: :show
   def show
     @event = Event.find(params[:id])
   end
-  
+
   def new
     @event = current_user.created_events.build
   end
@@ -20,8 +20,6 @@ before_action :authenticate, only: :show
   private
 
   def event_params
-    params.require(:event).permit(
-      :name, :place, :content, :start_at, :end_at
-    )
+    params.require(:event).permit(:name, :place, :content, :start_at, :end_at)
   end
 end
