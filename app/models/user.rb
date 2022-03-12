@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   # 関連の名前は、通常はモデル名である「events」になります。しかし今回は「関連元のユーザが作成したイベント」の関連であることがわかりやすくなるように、「created_events」という名前で設定しておきます。モデル名以外の名前を関連名に採用したので、class_nameオプションでモデルクラス名を指定しています。また、外部キーもデフォルトで使われるuser_idではないのでforeign_keyオプションで外部キーの名前を指定しています。
   has_many :created_events, class_name: "Event", foreign_key: "owner_id"
+  has_many :tickets
 
   def self.find_or_create_from_auth_hash!(auth_hash)
     provider = auth_hash[:provider]
