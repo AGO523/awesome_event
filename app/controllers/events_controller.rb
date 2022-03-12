@@ -22,11 +22,17 @@ before_action :authenticate, only: :show
     @event = current_user.created_events.find(params[:id])
   end
 
-  def updated_at
+  def update
     @event = current_user.created_events.find(params[:id])
     if @event.update(event_params)
       redirect_to @event, notice: "更新しました"
     end
+  end
+
+  def destroy
+    @event = current_user.created_events.find(params[:id])
+    @event.destroy!
+    redirect_to root_path, notice: "削除しました"
   end
 
   private
