@@ -1,21 +1,21 @@
 %h1.mt-3.mb-3= @event.name
 .row 
   .col-8
-    .card.mb-2 
+    .card.mb-2
       %h5.card-header イベント内容
-      .card-body 
+      .card-body
         %p.card-text= @event.content
-    .card.mb-2 
+    .card.mb-2
       %h5.card-header 開催時間
-      .card-body 
-        %p.card-text= "#{l(@event.start_at,format: :long)} #{l(@event.end_at,format: :long)}"
-    .card.mb-2 
+      .card-body
+        %p.card-text= "#{l(@event.start_at, format: :long)} #{l(@event.end_at, format: :long)}"
+    .card.mb-2
       %h5.card-header 開催場所
-      .card-body 
+      .card-body
         %p.card-text= @event.place
-    .card.mb-2 
+    .card.mb-2
       %h5.card-header 主催者
-      .card-body 
+      .card-body
         = link_to("https://github.com/#{@event.owner.name}", class: "card-link") do
           = image_tag @event.owner.image_url, width: 50, height: 50
           = "@#{@event.owner.name}"
@@ -24,18 +24,18 @@
       = link_to "イベントを編集する", edit_event_path(@event), class: "btn btn-info btn-lg btn-black"
       = link_to "イベントを削除する", event_path(@event), class: "btn btn-danger btn-lg btn-black", method: :delete, data: { confirm: "本当に削除しますか？" }
     - if logged_in?
-      %buttun.btn.btn-primary.btn-lg.btn-block{"data-toggle": "model", "date-target": "#createTicket" } 参加する
+      %button.btn.btn-primary.btn-lg.btn-block{ "data-toggle": "modal", "data-target": "#createTicket" } 参加する
       %div.modal.fade#createTicket
-        .modal-dialog 
-          .modal-content 
-            .modal-header 
+        .modal-dialog
+          .modal-content
+            .modal-header
               %h4.modal-title#dialogHeader 参加コメント
-              %buttun.close{ type: "button", "data-dismiss": "modal" } &times;
+              %button.close{ type: "button", "data-dismiss": "modal" } &times;
             = form_with(model: @event.tickets.build, url: event_tickets_path(@event)) do |f|
-              .modal-body 
-                #createTicketErrors 
+              .modal-body
+                #createTicketErrors
                 = f.text_field :comment, class: "form-control"
-              .modal-footer 
+              .modal-footer
                 %button.btn.btn-default{ type: "button", "data-dismiss": "modal" } キャンセル
                 = f.button "送信", class: "btn btn-primary"
     - else

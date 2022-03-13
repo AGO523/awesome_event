@@ -9,7 +9,7 @@ class TicketsController < ApplicationController
     event = Event.find(params[:event_id])
     @ticket = current_user.tickets.build do |t|
       t.event = event
-      t.comment = pramas[:ticket][:comment]
+      t.comment = params[:ticket][:comment]
     end
     if @ticket.save
       redirect_to event, notice: "このイベントに参加表明しました"
