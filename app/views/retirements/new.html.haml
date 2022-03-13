@@ -1,0 +1,15 @@
+%h1.mt-3 退会の確認
+
+#errors
+
+%p 退会した場合、ユーザーに関する全てのデータが削除されます。
+%p ただし、以下の場合は退会できません。
+
+%ul
+  %li
+    公開中の未終了イベントがある場合
+  %li
+    未終了の参加イベントがある場合
+%hr
+-# 「退会する」のリンクを生成するためのヘルパーlink_toにmethod::postを追加して、HTTPのPOSTメソッドとしてリクエストを送信するようにしています。実際にはrailsujsがformタグを動的に生成して送信する形になります。この時のデフォルトの挙動はAjaxを利用しないので、remote:trueオプションを追加することでAjaxを利用するようにします。
+= link_to "退会する", retirements_path, method: :post, remote: true, class: "btn btn-danger", data: { confirm: "本当に退会しますか？" }
