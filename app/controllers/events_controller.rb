@@ -3,6 +3,8 @@ before_action :authenticate, only: :show
 
   def show
     @event = Event.find(params[:id])
+    # 閲覧しているイベントへの参加状況を「@ticket」に格納します
+    @ticket = current_user && current_user.tickets.find_by(event: @event)
     # includes(:user)としているのは、@ticketsの各要素をeachで参照する時に、belongs_toで定義したuserメソッドを呼び出しているためです。includes(:user)は、Ticketsの取得時に関連するUserオブジェクトを一度に取得します。includes(:user)を使わないと@ticketsの要素の数だけSQLクエリが発行されることになります。このような挙動を通称N+1問題と呼びます。
     @tickets = @event.tickets.includes(:user).order(:created_at)
   end
