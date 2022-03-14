@@ -1,4 +1,7 @@
 class Event < ApplicationRecord
+
+  # Eventモデルに画像を紐付けるための宣言を追加しますhas_one_attached:imageと宣言して、Eventモデルでimageという名前の属性が使えるようにします
+  has_one_attached :image, dependent: false
   has_many :tickets, dependent: :destroy
   belongs_to :owner, class_name: "User"
 
@@ -9,13 +12,21 @@ class Event < ApplicationRecord
   validates :end_at, presence: true
   validate :start_at_should_be_before_end_at
 
+
+  attr_accessor :remove_image
+  before_save :remove_image_if_user_accept
+
   def created_by?(user)
     return false unless user
     owner_id == user.id
   end
 
   private
-  
+
+  def remove_image_if_user_accept
+    self.image = nil if ActiveRecord::Type::Boolean.new.cast(remove_image)
+  end
+
   def start_at_should_be_before_end_at
     return unless start_at && end_at
 

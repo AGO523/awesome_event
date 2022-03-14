@@ -42,6 +42,6 @@ before_action :authenticate, only: :show
   private
 
   def event_params
-    params.require(:event).permit(:name, :place, :content, :start_at, :end_at)
+    params.require(:event).permit(:name, :place, :content, :start_at, :end_at, :image, :remove_image)
   end
 end
