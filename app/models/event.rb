@@ -1,6 +1,6 @@
 class Event < ApplicationRecord
   # 検索にKuromojiを利用する
-  searchkick language: "japanese"
+  # searchkick language: "japanese"
 
   # Eventモデルに画像を紐付けるための宣言を追加しますhas_one_attached:imageと宣言して、Eventモデルでimageという名前の属性が使えるようにします
   has_one_attached :image, dependent: false
@@ -23,15 +23,15 @@ class Event < ApplicationRecord
     owner_id == user.id
   end
 
-  def search_data
-    {
-      name: name,
-      place: place,
-      content: content,
-      owner_name: owner&.name,
-      start_at: start_at
-    }
-  end
+  # def search_data
+  #   {
+  #     name: name,
+  #     place: place,
+  #     content: content,
+  #     owner_name: owner&.name,
+  #     start_at: start_at
+  #   }
+  # end
 
   private
 

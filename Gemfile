@@ -32,8 +32,8 @@ gem 'omniauth-github', '~> 1.4.0'
 gem 'omniauth-rails_csrf_protection', '~> 0.1.2'
 gem 'rails-i18n', '~> 6.0.0'
 gem 'active_storage_validations', '~> 0.8.8'
-gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
-gem 'searchkick', '~> 4.3.0'
+# gem 'kaminari', :git => 'https://github.com/kaminari/kaminari'
+# gem 'searchkick', '~> 4.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -51,6 +51,7 @@ group :development do
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'brakeman'
+  gem 'rack-mini-profiler', require: false
 
 end
 
